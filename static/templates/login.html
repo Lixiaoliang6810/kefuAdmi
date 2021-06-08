@@ -1,0 +1,183 @@
+<html lang="cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="陶士涵">
+    <title>GOFLY | GO-FLY开源免费在线客服系统登录页</title>
+    <meta name="keywords" content="GO-FLY,GOFLY客服,开源免费在线客服,GO语言客服,免费客服,开源客服,web客服,go客服,网站客服系统,免费在线客服,网站在线客服,在线客服软件,php客服" />
+    <meta name="description" content="GOFLY客服,GO-FLY开源客服，一套可独立部署的免费开源客服系统，网站在线客服系统，下载zip解压即可，仅依赖MySQL数据库，是一个开箱即用的网页在线客服，适合PHP程序员使用，同时也是首页完全可以编辑的单页营销系统." />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #3973ac;
+        }
+        .signin {
+            width: 350px;
+            padding: 20px;
+            margin:100px auto;
+            background: #fff;
+            -webkit-box-shadow: 0 1px 2px 0 rgba(101,129,156,.08);
+            box-shadow: 0 1px 2px 0 rgba(101,129,156,.08);
+        }
+        .signin h1,.signin h2,.signin .copyright{
+            font-weight: normal;
+            color: #4d627b;
+            text-align: center;
+        }
+        .signin .loginTitle{
+            font-size: 24px;
+        }
+        .signin .loginDesc{
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #409EFF;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .signin .copyright{
+            font-size: 12px;
+        }
+        @media (max-width: 768px) {
+            .signin{
+                width: 90%;
+                margin:40px auto;
+                background-color: #f5f5f5;
+                box-shadow:none;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<div id="app" class="signin">
+    <template>
+        <div class="loginHtml">
+            <h1 class="loginTitle">欢迎使用<a href="https://gofly.sopans.com">GOFLY</a></h1>
+            <el-form :model="kefuForm"  :rules="rules" ref="kefuForm">
+                <el-form-item  prop="username">
+                    <el-input v-model="kefuForm.username" placeholder="用户名"></el-input>
+                </el-form-item>
+                <el-form-item  prop="password">
+                    <el-input show-password v-on:keyup.enter.native="kefuLogin('kefuForm')" v-model="kefuForm.password" placeholder="密码"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button style="width: 100%" :loading="loading" type="primary" @click="kefuLogin('kefuForm')">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+
+        <p class="copyright">陶士涵版权所有</p>
+</template>
+</div>
+</body>
+<script>
+	new Vue({
+		el: '#app',
+        delimiters:["<{","}>"],
+		data: {
+            window:window,
+            activeName:"second",
+			loading:false,
+            localAuth:{
+                username:'',
+                password:'',
+            },
+            ruleForm:{
+                server:'',
+                email:'',
+                password:'',
+            },
+            kefuForm:{
+                username:'',
+                password:'',
+            },
+            rules: {
+                server: [
+                    { required: true, message: 'IMAP服务器如"imap.sina.net:143"包含端口号', trigger: 'blur' },
+                ],
+                email: [
+                    { required: true, message: '邮箱地址', trigger: 'blur' },
+                ],
+                username: [
+                    { required: true, message: '用户名不能为空', trigger: 'blur' },
+                ],
+                password: [
+                    { required: true, message: '密码不能为空', trigger: 'blur' },
+                ],
+            },
+            showRegHtml:false,
+            newName:"",
+            nickname:"",
+            newPass:"",
+            newRefPass:"",
+            captcha:"",
+            codeSrc:"/captcha",
+		},
+		methods: {
+            //提交表单
+            kefuLogin(formName){
+                let _this=this;
+                this.$refs[formName].validate((valid) => {
+                    if (!valid) {
+                        return false;
+                    } else {
+                        let data = {};
+                        data.type="kefu";
+                        data.username = _this.kefuForm.username;
+                        data.password = _this.kefuForm.password;
+                        _this.loading = true;
+                        $.post("/check", data, function (data) {
+                            if (data.code == 200) {
+                                _this.$message({
+                                    message: data.msg,
+                                    type: 'success'
+                                });
+                                localStorage.setItem("token",data.result.token);
+                                localStorage.setItem("ref_token",data.result.ref_token);
+                                localStorage.setItem("create_time",data.result.create_time);
+                                window.location.href="/main";
+                            } else {
+                                _this.$message({
+                                    message: data.msg,
+                                    type: 'error'
+                                });
+                            }
+                            _this.loading = false;
+                        });
+                    }
+                });
+			},
+            //重置表单
+            resetForm(formName) {
+                this.loading=false;
+                this.$refs[formName].resetFields();
+            },
+		},
+        created: function () {
+            if (top.location != location){
+                top.location.href = location.href;
+            }
+        }
+	})
+
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?82938760e00806c6c57adee91f39aa5e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>
