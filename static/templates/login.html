@@ -3,10 +3,10 @@
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="author" content="陶士涵">
-    <title>GOFLY | GO-FLY开源免费在线客服系统登录页</title>
-    <meta name="keywords" content="GO-FLY,GOFLY客服,开源免费在线客服,GO语言客服,免费客服,开源客服,web客服,go客服,网站客服系统,免费在线客服,网站在线客服,在线客服软件,php客服" />
-    <meta name="description" content="GOFLY客服,GO-FLY开源客服，一套可独立部署的免费开源客服系统，网站在线客服系统，下载zip解压即可，仅依赖MySQL数据库，是一个开箱即用的网页在线客服，适合PHP程序员使用，同时也是首页完全可以编辑的单页营销系统." />
+    <meta name="author" content="神话">
+    <title>神话客服系统登录</title>
+    <meta name="keywords" content="神话客服" />
+    <meta name="description" content="神话客服" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/theme-chalk/index.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.1/lib/index.js"></script>
@@ -62,7 +62,7 @@
 <div id="app" class="signin">
     <template>
         <div class="loginHtml">
-            <h1 class="loginTitle">欢迎使用<a href="https://gofly.sopans.com">GOFLY</a></h1>
+            <h1 class="loginTitle">欢迎使用<a href="http://192.168.110.100:8081">神话客服</a></h1>
             <el-form :model="kefuForm"  :rules="rules" ref="kefuForm">
                 <el-form-item  prop="username">
                     <el-input v-model="kefuForm.username" placeholder="用户名"></el-input>
@@ -76,7 +76,6 @@
             </el-form>
         </div>
 
-        <p class="copyright">陶士涵版权所有</p>
 </template>
 </div>
 </body>

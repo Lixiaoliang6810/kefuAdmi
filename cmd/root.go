@@ -10,7 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "go-fly",
 	Short: "go-fly",
-	Long:  `简洁快速的GO语言WEB在线客服 https://gofly.sopans.com`,
+	Long:  `简洁快速的GO语言WEB在线客服 http://192.168.110.100:8081`,
 	Args:  args,
 	Run: func(cmd *cobra.Command, args []string) {
 

@@ -229,10 +229,10 @@
    
 ```php
     //下面js路径和GOFLY_URL 都要改成自己的
-    <script src="https://gofly.sopans.com/assets/js/gofly-front.js"></script>
+    <script src="http://192.168.110.100:8081/assets/js/gofly-front.js"></script>
     <script>
         GOFLY.init({
-            GOFLY_URL:"https://gofly.sopans.com",
+            GOFLY_URL:"http://192.168.110.100:8081",
             GOFLY_KEFU_ID: "kefu2",
             GOFLY_BTN_TEXT: "客服在线 欢迎咨询",
             GOFLY_LANG:"cn"
@@ -243,7 +243,7 @@
    
 ### nginx部署
 
-访问：https://gofly.sopans.com
+访问：http://192.168.110.100:8081
 
 1.参考支持https的部署示例 , 注意反向代理的端口号和证书地址 , 不使用https也可以访问 , 只是不会有浏览器通知弹窗
 
@@ -394,8 +394,8 @@ location /
 ### 打赏作者
 
 
-<img src="https://gofly.sopans.com/static/images/alipay.jpg" width="280"  alt="支付宝"/>
-<img src="https://gofly.sopans.com/static/images/weixin.jpg" width="280"  alt="微信"/>
+<img src="http://192.168.110.100:8081/static/images/alipay.jpg" width="280"  alt="支付宝"/>
+<img src="http://192.168.110.100:8081/static/images/weixin.jpg" width="280"  alt="微信"/>
 
 ### 版权声明
 
