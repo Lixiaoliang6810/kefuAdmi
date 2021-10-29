@@ -27,6 +27,7 @@ new Vue({
         //初始化websocket
         initConn:function() {
             let socket = new ReconnectingWebSocket(this.server+"?visitor_id="+this.visitor.visitor_id);//创建Socket实例
+            console.log('111',this.server);
             socket.maxReconnectAttempts = 30;
             this.socket = socket
             this.socket.onmessage = this.OnMessage;
@@ -358,7 +359,7 @@ new Vue({
                             if(i==0){
                                 _this.alertSound();
                             }
-      
+
                             i++;
                         },4000);
                     }

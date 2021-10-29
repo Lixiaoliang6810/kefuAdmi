@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4f9f53dc-f34a-41d2-9cf3-a268f56255d8" name="100">
+        <fileTransfer rootFolder="/home/qidian/go/src/goflykefuxitong" accessType="SFTP" host="192.168.110.100" port="22" sshConfigId="4bc3725f-837b-48eb-a838-aa96aa76426d" sshConfig="qidian@192.168.110.100:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

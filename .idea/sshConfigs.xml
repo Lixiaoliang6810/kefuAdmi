@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="192.168.110.100" id="4bc3725f-837b-48eb-a838-aa96aa76426d" port="22" nameFormat="DESCRIPTIVE" username="qidian" />
+    </configs>
+  </component>
+</project>
